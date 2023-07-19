@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <title>UCI ML Respository Classification</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" >	
+	<style> h2 {text-align: center;} 
+            form {text-align: center;}
+            input {text-align: center;}
+            body {margin:0 auto; }
+            body {background-color: coral;}  
+            p {text-align: center;}  
+            body { background-image: linear-gradient(to bottom, rgba(255,255,0,0.5), rgba(0,0,255,0.5)),
+                   url('university.jpg'); }       
+    </style>
+  </head>
+  
+<body>
+
+<h3 style="text-align:center;">Given review:</h3>
+<div style="text-align:center;">{{ content }}</div>
+
+<h3 style="text-align:center;">Prediction:</h3>
+<div style="text-align:center;">Given review is <strong>{{ prediction }}</strong>
+	 (probability: {{ probability }}%).</div> 
+	 
+<p style="text-align:center;"> <br> If the prediction for the given statement or review is correct, then select the correct button and
+    if the prediction is wrong, then select the incorrect button. By doing this, the program will continue to learning for further 
+    review prediction to be accurate. </p>
+
+<div id='button' style="text-align:center;">
+	  <form action="/thanks" method="post">
+	    <input type=submit value='Correct' name='feedback_button'>
+		<input type=submit value='Incorrect' name='feedback_button'>
+		<input type=hidden value='{{ prediction }}' name='prediction'>
+		<input type=hidden value='{{ content }}' name='review'>
+	  </form>
+</div> <br>
+
+<div id='button' style="text-align:center;">
+	  <form action="/">
+	    <input type=submit value='Submit another review'>
+	  </form>
+</div>
+
+</body>
+</html>
